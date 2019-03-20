@@ -1,8 +1,18 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import logo from "./logo.svg";
 import "./App.css";
+import { fetchServerAction } from "./actions/fetchServerAction";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(evt) {
+    this.props.fetchServerAction();
+  }
   render() {
     return (
       <div className="App">
@@ -20,9 +30,22 @@ class App extends Component {
             Learn React
           </a>
         </header>
+        <pre>{JSON.stringify(this.props)}</pre>
+        <button onClick={this.handleClick}>Test redux action</button>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => ({
+  ...state
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchServerAction: () => dispatch(fetchServerAction())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
