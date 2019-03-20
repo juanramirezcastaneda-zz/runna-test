@@ -38,7 +38,7 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  ...state
+  fetchServer: state.fetchServerReducer
 });
 
 const mapDispatchToProps = dispatch => ({
