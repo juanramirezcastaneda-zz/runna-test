@@ -7,12 +7,22 @@ import { fetchServerAction } from "./actions/fetchServerAction";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleFetchClick = this.handleFetchClick.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  handleClick(evt) {
-    this.props.fetchServerAction();
+  handleFetchClick(evt) {
+    this.props.fetchServerAction(this.props.berry.id);
   }
+
+  handleInputChange(evt) {
+    const berryIdAction = {
+      type: "CHANGE_BERRY_ID",
+      berryId: evt.target.value
+    };
+    this.props.dispatch(berryIdAction);
+  }
+
   render() {
     return (
       <div className="App">
@@ -30,19 +40,27 @@ class App extends Component {
             Learn React
           </a>
         </header>
-        <pre>{JSON.stringify(this.props)}</pre>
-        <button onClick={this.handleClick}>Test redux action</button>
+        <div>
+          <input
+            value={this.props.berry.id}
+            onChange={this.handleInputChange}
+          />
+          <pre>{JSON.stringify(this.props)}</pre>
+          <button onClick={this.handleFetchClick}>Test redux action</button>
+        </div>
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  fetchServer: state.fetchServerReducer
+  fetchServer: state.fetchServerReducer,
+  berry: state.berryReducer
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchServerAction: () => dispatch(fetchServerAction())
+  fetchServerAction: berryId => dispatch(fetchServerAction(berryId)),
+  dispatch: action => dispatch(action)
 });
 
 export default connect(
