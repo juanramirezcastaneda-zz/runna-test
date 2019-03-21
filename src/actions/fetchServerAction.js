@@ -1,7 +1,8 @@
-export const fetchServerAction = (berryId = 1) => async dispatch => {
+export const fetchServerAction = berryId => async dispatch => {
   dispatch({
     type: "FETCH_DATA_START"
   });
+  debugger;
   const getUrl = `https://pokeapi.co/api/v2/berry-firmness/${berryId}/`;
   await fetch(getUrl)
     .then(function(response) {
