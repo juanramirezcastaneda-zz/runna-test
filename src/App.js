@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import logo from "./logo.svg";
 import "./App.css";
-import * as berriesActions from "./ducks/berries/berries";
+// import * as thunk from "./ducks/berries/thunk";
 
 class App extends Component {
   constructor(props) {
