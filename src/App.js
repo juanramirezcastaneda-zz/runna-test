@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import logo from "./logo.svg";
 import "./App.css";
-import { fetchServerAction } from "./actions/fetchServerAction";
+import * as berriesActions from "./ducks/berries/berries";
 
 class App extends Component {
   constructor(props) {
@@ -12,15 +12,13 @@ class App extends Component {
   }
 
   handleFetchClick(evt) {
-    this.props.fetchServerAction(this.props.berry.id);
+    // this.props.fetchServerAction(this.props.berry.id);
   }
 
   handleInputChange(evt) {
-    const berryIdAction = {
-      type: "CHANGE_BERRY_ID",
-      berryId: evt.target.value
-    };
-    this.props.dispatch(berryIdAction);
+    debugger;
+    // const berryIdAction = berriesActions.changeBerryId(evt.target.value);
+    // this.props.dispatch(berryIdAction);
   }
 
   render() {
@@ -42,7 +40,7 @@ class App extends Component {
         </header>
         <div>
           <input
-            value={this.props.berry.id}
+            //value={this.props.berry.id}
             onChange={this.handleInputChange}
           />
           <pre>{JSON.stringify(this.props)}</pre>
@@ -53,13 +51,20 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  fetchServer: state.fetchServerReducer,
-  berry: state.berryReducer
-});
+// const mapStateToProps = state => ({
+//   fetchServer: state.fetchServerReducer,
+//   berry: state.berryReducer
+// });
+
+const mapStateToProps = state => {
+  debugger;
+  return {
+    berries: state.berriesState.berries
+  };
+};
 
 const mapDispatchToProps = dispatch => ({
-  fetchServerAction: berryId => dispatch(fetchServerAction(berryId)),
+  // fetchServerAction: berryId => dispatch(fetchServerAction(berryId)),
   dispatch: action => dispatch(action)
 });
 

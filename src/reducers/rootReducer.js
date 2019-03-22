@@ -1,7 +1,5 @@
 import { combineReducers } from "redux";
-import fetchServerReducer from "./fetchServerReducer";
-import berryReducer from "./berryReducer";
-export default combineReducers({
-  fetchServerReducer,
-  berryReducer
-});
+import * as berryReducers from "../ducks/index";
+
+const rootReducer = combineReducers(berryReducers);
+export default rootReducer;
