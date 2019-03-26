@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import logo from "./logo.svg";
 import "./App.css";
 // import * as thunk from "./ducks/berries/thunk";
+import { berriesOperations } from "./ducks/berries";
 
 class App extends Component {
   constructor(props) {
@@ -16,9 +17,9 @@ class App extends Component {
   }
 
   handleInputChange(evt) {
-    debugger;
-    // const berryIdAction = berriesActions.changeBerryId(evt.target.value);
-    // this.props.dispatch(berryIdAction);
+    const berryIdAction = berriesOperations.changeBerryId(evt.target.value);
+    this.props.dispatch(berryIdAction);
+    //dispatch(berriesOperations.changeBerryId(evt.target.value));
   }
 
   render() {
@@ -57,7 +58,6 @@ class App extends Component {
 // });
 
 const mapStateToProps = state => {
-  debugger;
   return {
     berries: state.berriesState.berries
   };

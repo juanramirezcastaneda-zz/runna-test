@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-import actions from "./actions";
 import types from "./types";
 
 const initialState = {
@@ -12,11 +11,21 @@ const initialState = {
 const berries = (state = initialState, action) => {
   switch (action.type) {
     case types.LOAD_START_BERRIES:
-      return actions.startLoadingBerries();
+      return {
+        ...state,
+        loading: true
+      };
     case types.LOAD_END_BERRIES:
-      return actions.endLoadingBerries(action.berries);
+      return {
+        ...state,
+        loading: false,
+        berries: action.berries
+      };
     case types.CHANGE_BERRY_ID:
-      return actions.changeBerryId(action.id);
+      return {
+        ...state,
+        id: action.id
+      };
     default:
       return state;
   }
