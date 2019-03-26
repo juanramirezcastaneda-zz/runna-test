@@ -12,7 +12,7 @@ export function endLoadingBerries(berries) {
   return {
     type: types.LOAD_END_BERRIES,
     loading: false,
-    items: berries
+    berries
   };
 }
 

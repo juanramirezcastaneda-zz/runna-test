@@ -13,13 +13,13 @@ class App extends Component {
   }
 
   handleFetchClick(evt) {
+    this.props.dispatch(berriesOperations.loadBerries(this.props.berries.id));
     // this.props.fetchServerAction(this.props.berry.id);
   }
 
   handleInputChange(evt) {
     const berryIdAction = berriesOperations.changeBerryId(evt.target.value);
     this.props.dispatch(berryIdAction);
-    //dispatch(berriesOperations.changeBerryId(evt.target.value));
   }
 
   render() {
@@ -51,11 +51,6 @@ class App extends Component {
     );
   }
 }
-
-// const mapStateToProps = state => ({
-//   fetchServer: state.fetchServerReducer,
-//   berry: state.berryReducer
-// });
 
 const mapStateToProps = state => {
   return {
