@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import logo from "./logo.svg";
 import "./App.css";
-// import * as thunk from "./ducks/berries/thunk";
 import { berriesOperations } from "./ducks/berries";
 
 class App extends Component {
@@ -13,13 +12,11 @@ class App extends Component {
   }
 
   handleFetchClick(evt) {
-    this.props.dispatch(berriesOperations.loadBerries(this.props.berries.id));
-    // this.props.fetchServerAction(this.props.berry.id);
+    this.props.loadBerries(this.props.berries.id);
   }
 
   handleInputChange(evt) {
-    const berryIdAction = berriesOperations.changeBerryId(evt.target.value);
-    this.props.dispatch(berryIdAction);
+    this.props.changeBerryId(evt.target.value);
   }
 
   render() {
@@ -40,10 +37,7 @@ class App extends Component {
           </a>
         </header>
         <div>
-          <input
-            //value={this.props.berry.id}
-            onChange={this.handleInputChange}
-          />
+          <input onChange={this.handleInputChange} />
           <pre>{JSON.stringify(this.props)}</pre>
           <button onClick={this.handleFetchClick}>Test redux action</button>
         </div>
@@ -59,8 +53,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  // fetchServerAction: berryId => dispatch(fetchServerAction(berryId)),
-  dispatch: action => dispatch(action)
+  changeBerryId: berryId => dispatch(berriesOperations.changeBerryId(berryId)),
+  loadBerries: berryId => dispatch(berriesOperations.loadBerries(berryId))
 });
 
 export default connect(
